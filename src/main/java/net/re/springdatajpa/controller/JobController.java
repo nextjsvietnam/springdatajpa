@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(maxAge = 3600, origins = {"http://localhost:3015"})
 public class JobController {
     @Autowired
     JobRepository jobRepository;
