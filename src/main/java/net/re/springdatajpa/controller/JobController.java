@@ -19,7 +19,10 @@ public class JobController {
 
     @GetMapping("/jobs")
     @ResponseBody
-    public List<Job> findAll(@RequestParam(required = false) String s){
+    public List<Job> findAll(@RequestParam(required = false) String s) throws Exception {
+        if (s != null && s.equals("a")) {
+            throw new Exception("Something went wrong");
+        }
         if(s == null || s.isEmpty()) return jobRepository.findAll();
         return jobRepository.findByKeyword(s);
     }
@@ -42,6 +45,10 @@ public class JobController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Job update(@PathVariable("jobId") int jobId, @RequestBody Job job){
+        // call log
+        // call sec
+        // validation
+        // exception
         job.setId(jobId);
         return jobRepository.save(job);
     }
